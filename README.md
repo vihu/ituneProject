@@ -5,6 +5,7 @@
 >
 >Find Album art by using lastFM API
 >
+>Attach the album art to the downloaded song
 
 #Requirements
 >pip install virtualenv env
