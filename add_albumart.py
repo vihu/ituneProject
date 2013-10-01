@@ -28,18 +28,14 @@ def add_album_to_ID3(song,image_name,image_format):
   )
   song.save()
 
-def get_album_art_from_web():
-  # test_url = "http://ws.audioscrobbler.com/2.0/?method=album.getinfo&api_key=bd221fa33740b25dcce42dac36c86b60&artist=Cher&album=Believe"
-
-  #my lastfm api key
-  API_KEY = "bd221fa33740b25dcce42dac36c86b60"
+def get_album_art_from_web(key):
 
   #getting track,artist and album using itune_radio.py
   track,artist = get_song_and_artist()
   album = get_album()
 
   #generating the api url for lastfm
-  url = "http://ws.audioscrobbler.com/2.0/?method=album.getinfo&api_key=%s&artist=%s&album=%s&format=json" %(API_KEY,artist,album)
+  url = "http://ws.audioscrobbler.com/2.0/?method=album.getinfo&api_key=%s&artist=%s&album=%s&format=json" %(key,artist,album)
 
   #getting the relevant album art url from lastfm
   r = requests.get(url)

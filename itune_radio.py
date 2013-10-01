@@ -7,6 +7,7 @@ from subprocess import Popen, PIPE
 import sys
 import requests
 from add_albumart import *
+from globals import *
 
 def get_album():
   scpt = '''
@@ -97,6 +98,7 @@ if __name__ == '__main__':
     temp_query = track + " " + artist
     query =  '+'.join(temp_query.split(' '))
     link = youtube_search(query)
+    print "API_KEY = " + API_KEY
     print "Finding song, artist and youtube link"
     print "Done."
     print "--------------------------------------"
@@ -127,7 +129,7 @@ if __name__ == '__main__':
 
   try:
     print "Finding the appropriate Album Art"
-    artname, artformat = get_album_art_from_web()
+    artname, artformat = get_album_art_from_web(API_KEY)
     print "Done"
     print "--------------------------------------"
     print "Linking the album art to the song"
