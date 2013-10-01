@@ -5,7 +5,7 @@ import re
 import subprocess
 from subprocess import Popen, PIPE
 import sys
-sys.path.append("/usr/local/lib/python2.7/site-packages/requests-1.2.3-py2.7.egg")
+# sys.path.append("/usr/local/lib/python2.7/site-packages/requests-1.2.3-py2.7.egg")
 import requests
 from add_albumart import *
 
