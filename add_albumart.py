@@ -4,6 +4,7 @@ from mutagen.id3 import ID3, APIC, error
 import requests
 from PIL import Image
 from StringIO import StringIO
+import os
 
 def get_song_from_file(name_of_song):
   audio = MP3(name_of_song, ID3=ID3)
@@ -22,7 +23,7 @@ def add_album_to_ID3(song,image_name,image_format):
           mime='image/'+image_format, # image/jpeg or image/png
           type=3, # 3 is for the cover image
           desc=u'Cover',
-          data=open('/Users/rahul/Dev/random/ituneProject/' + image_name).read()
+          data=open(os.getcwd() + '/' + image_name).read()
       )
   )
   song.save()
@@ -57,3 +58,7 @@ def get_album_art_from_web():
   img.save(img_name)
 
   return img_name, img_format
+
+def delete_art_after_link(image_name):
+  album_art_path = os.getcwd() + '/' + image_name
+  os.remove(album_art_path)

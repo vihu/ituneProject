@@ -5,7 +5,6 @@ import re
 import subprocess
 from subprocess import Popen, PIPE
 import sys
-# sys.path.append("/usr/local/lib/python2.7/site-packages/requests-1.2.3-py2.7.egg")
 import requests
 from add_albumart import *
 
@@ -76,8 +75,12 @@ def convert_keys_to_string(dic):
       for k, v in dic.items())
 
 
-def start_download(link):
-  cmd = ['youtube-dl', "--extract-audio", "--audio-format", "mp3", "-o", "/Users/rahul/Downloads/%(title)s.%(ext)s", link]
+def get_path():
+  user_download_path = raw_input("Enter download path: ")
+  return user_download_path
+
+def start_download(link,user_path):
+  cmd = ['youtube-dl', "--extract-audio", "--audio-format", "mp3", "-o", user_path, link]
   p = Popen(cmd, stdout=PIPE, stderr=PIPE)
   stdout,stderr = p.communicate()
 
@@ -103,8 +106,10 @@ if __name__ == '__main__':
 
 
   try:
+    download_path = get_path()
+    corrected_path = str(download_path) + "/%(title)s.%(ext)s"
     print "Starting Download. Be Patient"
-    mp3 = start_download(link)
+    mp3 = start_download(link,corrected_path)
     print "Done."
     print "--------------------------------------"
   except Exception as e:
@@ -129,6 +134,9 @@ if __name__ == '__main__':
     add_album_to_ID3(song,artname,artformat)
     print "Done"
     print "--------------------------------------"
+    print "Deleting the downloaded album art"
+    delete_art_after_link(artname)
+    print "Done"
   except Exception as e:
     print "Couldnt get the album art from web"
     raise e
