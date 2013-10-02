@@ -1,5 +1,5 @@
 #Introduction
->Download current playing song from Youtube on iTunes Radio
+>Download current playing song on iTunes Radio from Youtube
 >
 >Find and add ID3 tag from Last FM
 
